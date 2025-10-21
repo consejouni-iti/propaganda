@@ -1,0 +1,380 @@
+/* ======================================= */
+/* 1. CONFIGURACIÓN GLOBAL Y COLORES (BUAP) */
+/* ======================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif; /* Fuente moderna */
+    line-height: 1.6;
+    background-color: #ecf0f3; /* Fondo de neumorfismo sutil */
+    color: #2c3e50; 
+    transition: opacity 0.5s;
+}
+
+/* Colores BUAP de alto contraste y Neumorfismo */
+:root {
+    --color-principal: #004a99; /* Azul BUAP/FCC (Fuerte) */
+    --color-secundario: #ffc300; /* Amarillo/Dorado BUAP (Alto Contraste) */
+    --color-terciario: #e74c3c; /* Rojo de Contraste */
+    --color-fondo: #ecf0f3; /* Fondo base de neumorfismo */
+    --color-texto: #2c3e50;
+    --shadow-light: 5px 5px 10px #d1d9e6; /* Sombra sutil y clara */
+    --shadow-dark: -5px -5px 10px #ffffff; /* Sombra sutil y oscura */
+    --shadow-inset: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff; /* Sombra interna para inputs */
+}
+
+/* --- Loader Inicial --- */
+#page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid var(--color-secundario);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ======================================= */
+/* 2. HEADER Y NAVEGACIÓN */
+/* ======================================= */
+header {
+    background: var(--color-principal);
+    color: var(--color-fondo);
+    padding: 1.5rem 5%; /* Más padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra más fuerte para contraste */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo span {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li a {
+    color: var(--color-fondo);
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    transition: background-color 0.3s, color 0.3s, border-radius 0.3s;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+nav ul li a.active {
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    font-weight: 700;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 195, 0, 0.3);
+    color: var(--color-fondo);
+}
+
+/* ======================================= */
+/* 3. ESTRUCTURA Y TITULARES */
+/* ======================================= */
+main {
+    padding: 40px 5%;
+}
+
+section {
+    padding: 60px 5%;
+    margin-bottom: 40px;
+    background: var(--color-fondo);
+    border-radius: 15px;
+    box-shadow: var(--shadow-light), var(--shadow-dark); /* Neumorfismo sutil */
+    text-align: center;
+}
+
+h1, h2 {
+    color: var(--color-principal);
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+h2 {
+    border-bottom: 4px solid var(--color-secundario); /* Separador más grueso */
+    padding-bottom: 15px;
+    display: inline-block;
+    margin: 0 auto 2rem;
+    width: 100%;
+    font-size: 2.2rem;
+}
+
+/* ======================================= */
+/* 4. SECCIONES ESPECÍFICAS */
+/* ======================================= */
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--color-principal) 0%, #007bff 100%);
+    color: white;
+    padding: 120px 5%;
+    margin-bottom: 40px;
+    border-radius: 15px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2); /* Sombra intensa para el hero */
+}
+
+.hero h1 {
+    color: white;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+}
+
+/* Botón principal del Hero (usando color secundario) */
+.hero a button {
+    box-shadow: var(--shadow-dark), var(--shadow-light);
+}
+
+
+/* Info Items y Contenedores */
+.info-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    text-align: left;
+}
+
+.info-item {
+    flex: 1 1 45%;
+    padding: 25px;
+    background-color: var(--color-fondo);
+    border-radius: 10px;
+    box-shadow: var(--shadow-inset); /* Sombra interna para diferenciarlos del fondo */
+    transition: all 0.3s;
+}
+
+.info-item h3 {
+    color: var(--color-principal);
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+    border-bottom: 2px solid var(--color-secundario);
+    padding-bottom: 5px;
+}
+
+.pilares-lista {
+    list-style-type: none; /* Quitamos el disco y usamos un ícono */
+    padding-left: 0;
+}
+
+.pilares-lista li {
+    padding: 10px 0;
+    border-bottom: 1px dashed #c0c0c0;
+    position: relative;
+    padding-left: 30px;
+    color: var(--color-texto);
+}
+
+.pilares-lista li::before {
+    content: "💡"; /* Ícono visual */
+    position: absolute;
+    left: 0;
+    font-size: 1.1rem;
+    color: var(--color-secundario);
+}
+
+/* Tarjetas (Cards) */
+.cards-container {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.card {
+    text-align: center;
+    flex: 1 1 300px;
+    padding: 30px;
+    background-color: var(--color-fondo);
+    border-radius: 15px;
+    box-shadow: var(--shadow-light), var(--shadow-dark); /* Neumorfismo estándar */
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: var(--color-texto);
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Elevación más notable */
+    box-shadow: 10px 10px 20px #babecc, -10px -10px 20px #ffffff; /* Efecto más pronunciado */
+}
+
+/* Estilos específicos para Consejeros */
+.card.consejero img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 5px solid var(--color-terciario); /* Borde más grueso y rojo de contraste */
+    box-shadow: 0 0 0 5px var(--color-secundario); /* Anillo doble */
+}
+
+.card.consejero h3 {
+    color: var(--color-principal);
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.card.consejero p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-top: 8px;
+}
+
+.card.consejero .matricula {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--color-terciario);
+    font-weight: 600;
+}
+
+
+/* Formulario de Contacto */
+#formulario-contacto {
+    max-width: 700px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+    background-color: var(--color-fondo);
+    border-radius: 15px;
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+}
+
+#formulario-contacto label {
+    font-weight: 600;
+    color: var(--color-principal);
+    margin-top: 10px;
+}
+
+#formulario-contacto input,
+#formulario-contacto select,
+#formulario-contacto textarea {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 1rem;
+    box-shadow: var(--shadow-inset); /* Neumorfismo interno en campos */
+    background: var(--color-fondo);
+    transition: box-shadow 0.3s;
+}
+
+#formulario-contacto input:focus,
+#formulario-contacto select:focus,
+#formulario-contacto textarea:focus {
+    outline: none;
+    box-shadow: inset 2px 2px 5px var(--color-principal), inset -5px -5px 10px var(--color-fondo); /* Efecto focus con color principal */
+}
+
+#formulario-contacto textarea {
+    resize: vertical;
+}
+
+/* Botón del formulario */
+#formulario-contacto button {
+    margin-top: 25px;
+    background-color: var(--color-principal);
+    color: white;
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+}
+
+#formulario-contacto button:hover {
+    background-color: #003777;
+    transform: translateY(0);
+}
+
+/* --- Botón Volver Arriba --- */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+    display: none; /* Ocultar por defecto */
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+#back-to-top:hover {
+    background-color: #ffb700;
+    transform: scale(1.1);
+}
+
+/* ======================================= */
+/* 5. MEDIA QUERIES */
+/* ======================================= */
+@media (max-width: 992px) {
+    .info-container {
+        flex-direction: column;
+    }
+    .hero {
+        padding: 80px 5%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 1rem 5%;
+    }
+    nav ul {
+        margin-top: 10px;
+        justify-content: center;
+    }
+    nav ul li a {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+}
