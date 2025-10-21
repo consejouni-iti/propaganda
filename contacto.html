@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto y Propuestas - BUAP ITI</title>
+    <link rel="stylesheet" href="css/stilos.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span>🏛️ Consejo Universitario FCC-ITI</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="informacion.html">Información Detallada</a></li>
+                <li><a href="consejeros.html">Consejeros</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="contacto">
+            <h2>Agenda una Audiencia o Envía tu Propuesta</h2>
+            <p style="text-align: center; margin-bottom: 40px;">Tu opinión es fundamental. Usa este formulario para comunicarte directamente con la representación.</p>
+
+            <form id="formulario-contacto">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+
+                <label for="matricula">Matrícula (ITI):</label>
+                <input type="text" id="matricula" name="matricula" placeholder="Ej. 202012345" required>
+
+                <label for="asunto">Asunto Principal:</label>
+                <select id="asunto" name="asunto" required>
+                    <option value="">Selecciona un Asunto</option>
+                    <option value="Propuesta de Mejora">Propuesta de Mejora</option>
+                    <option value="Duda/Inquietud Consejo">Duda o Inquietud sobre el Consejo</option>
+                    <option value="Solicitar Audiencia">Solicitar Audiencia</option>
+                </select>
+
+                <label for="mensaje">Mensaje / Detalle de la Propuesta:</label>
+                <textarea id="mensaje" name="mensaje" rows="6" required></textarea>
+
+                <button type="submit">Enviar Propuesta</button>
+                <p id="mensaje-envio" style="display: none; color: var(--color-principal); font-weight: bold;"></p>
+            </form>
+            
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Representación de Consejeros Universitarios ITI - FCC BUAP.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
