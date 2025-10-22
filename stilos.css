@@ -8,7 +8,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif; /* Fuente moderna */
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     background-color: #ecf0f3; /* Fondo de neumorfismo sutil */
     color: #2c3e50; 
@@ -56,51 +56,65 @@ body {
 }
 
 /* ======================================= */
-/* 2. HEADER Y NAVEGACIÓN */
+/* 2. HEADER Y NAVEGACIÓN (PROFESIONAL) */
 /* ======================================= */
 header {
-    background: var(--color-principal);
-    color: var(--color-fondo);
-    padding: 1.5rem 5%;
+    background: var(--color-fondo); /* Fondo neumórfico claro */
+    color: var(--color-principal);
+    padding: 1rem 5%; /* Padding más sutil */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    /* Sombra sutil que sigue el estilo neumórfico */
+    box-shadow: var(--shadow-light), var(--shadow-dark); 
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .logo span {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    color: var(--color-principal);
+}
+
+/* Contenedor de la navegación */
+nav {
+    flex-grow: 0; 
 }
 
 nav ul {
     list-style: none;
     display: flex; /* Horizontal en escritorio */
+    gap: 10px;
     transition: all 0.3s ease-in-out;
 }
 
 nav ul li a {
-    color: var(--color-fondo);
+    color: var(--color-texto);
     text-decoration: none;
-    padding: 0.8rem 1.2rem;
-    transition: background-color 0.3s, color 0.3s, border-radius 0.3s;
-    border-radius: 6px;
+    padding: 0.6rem 1rem;
     font-weight: 500;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    border-radius: 8px;
+    
+    /* Efecto "outset" neumórfico para los links */
+    box-shadow: 2px 2px 4px #babecc, -2px -2px 4px #ffffff; 
 }
 
 nav ul li a.active {
-    background-color: var(--color-secundario);
-    color: var(--color-principal);
-    font-weight: 700;
+    /* El elemento activo simula ser "presionado" */
+    background-color: var(--color-principal);
+    color: var(--color-fondo);
+    font-weight: 600;
+    box-shadow: var(--shadow-inset);
 }
 
-nav ul li a:hover {
-    background-color: rgba(255, 195, 0, 0.3);
-    color: var(--color-fondo);
+nav ul li a:hover:not(.active) {
+    color: var(--color-principal); 
+    background-color: var(--color-fondo);
+    box-shadow: 4px 4px 8px #babecc, -4px -4px 8px #ffffff;
 }
 
 /* ======================================= */
@@ -375,8 +389,7 @@ h2 {
 
 .anuncio-card img {
     width: 100%;
-    /* AJUSTE SOLICITADO: Imagen de anuncio más grande (300px de alto) */
-    height: 300px; 
+    height: 300px; /* Imagen de anuncio más grande */
     object-fit: cover;
     border-bottom: 3px solid var(--color-secundario);
 }
@@ -408,7 +421,7 @@ h2 {
 .galeria-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px; /* Reduje el gap a 20px para mejor apariencia */
+    gap: 20px; 
     margin-top: 30px;
 }
 
@@ -425,7 +438,7 @@ h2 {
     display: flex; 
     align-items: center;
     justify-content: center;
-    background-color: var(--color-fondo); /* Fondo visible si la imagen no cubre */
+    background-color: var(--color-fondo); 
 }
 
 .galeria-item:hover {
@@ -435,7 +448,7 @@ h2 {
 .galeria-item img {
     width: 100%;
     height: 100%; 
-    /* AJUSTE SOLICITADO: Muestra la imagen completa, sin recortar */
+    /* Muestra la imagen completa, sin recortar */
     object-fit: contain; 
     
     display: block;
@@ -454,6 +467,126 @@ h2 {
     text-align: center;
 }
 
+/* --- Estilos para la sección de Propuestas (Comentarios y Formulario) --- */
+.propuesta-card {
+    text-align: left;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.propuesta-img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.comentarios-seccion {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+}
+
+.comentarios-seccion h4 {
+    font-size: 1.1rem;
+    color: var(--color-principal);
+    margin-bottom: 10px;
+}
+
+.lista-comentarios {
+    max-height: 100px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding-right: 5px;
+}
+
+.lista-comentarios p {
+    font-size: 0.9em;
+    padding: 5px;
+    margin: 5px 0;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.form-comentario {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.form-comentario input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: var(--shadow-inset);
+}
+
+.form-comentario button {
+    padding: 8px 12px;
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: var(--shadow-light);
+}
+
+/* Estilos para el formulario de la propuesta principal */
+#form-propuesta {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    text-align: left;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+}
+
+#form-propuesta label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+    color: var(--color-principal);
+}
+
+#form-propuesta input[type="text"],
+#form-propuesta textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 5px;
+    box-shadow: var(--shadow-inset);
+    background-color: var(--color-fondo);
+}
+
+#form-propuesta input[type="file"] {
+    padding: 12px 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+#form-propuesta button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 30px;
+    background-color: var(--color-principal);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+    transition: background-color 0.3s;
+}
+
+#form-propuesta button:hover {
+    background-color: #003777;
+    box-shadow: 4px 4px 8px #babecc, -4px -4px 8px #ffffff;
+}
+
 /* ======================================= */
 /* 7. MEDIA QUERIES (RESPONSIVE) */
 /* ======================================= */
@@ -467,10 +600,11 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    /* AJUSTE SOLICITADO: NAVEGACIÓN COMPLETA EN MÓVILES */
+    /* AJUSTE SOLICITADO: NAVEGACIÓN PROFESIONAL Y COMPLETA EN MÓVILES */
     header {
         flex-direction: column;
         padding: 1rem 5%;
+        box-shadow: var(--shadow-light), var(--shadow-dark); 
     }
     
     .logo {
@@ -483,15 +617,14 @@ h2 {
 
     nav ul {
         flex-direction: column; /* Apila los elementos verticalmente */
-        margin-top: 0; 
+        gap: 5px; 
         width: 100%;
-        align-items: center; 
+        align-items: stretch; /* Se estira para ocupar el 100% del ancho */
     }
     
     nav ul li {
         width: 100%;
         text-align: center; 
-        margin: 2px 0; 
     }
 
     nav ul li a {
@@ -499,7 +632,14 @@ h2 {
         font-size: 1rem;
         width: 100%;
         display: block;
-        background-color: rgba(255, 255, 255, 0.1); 
+        background-color: var(--color-fondo); 
+        box-shadow: var(--shadow-light), var(--shadow-dark); /* Sombra "outset" para cada botón */
+    }
+    
+    nav ul li a.active {
+        color: var(--color-principal);
+        background-color: var(--color-secundario); /* Resaltado activo con color BUAP */
+        box-shadow: var(--shadow-inset);
     }
     /* FIN AJUSTE NAVEGACIÓN MÓVIL */
     

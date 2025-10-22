@@ -14,7 +14,7 @@
     <nav>
         <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="informacion.html">Información </a></li>
+            <li><a href="informacion.html">Información</a></li>
             <li><a href="consejeros.html">Consejeros</a></li>
             <li><a href="propuestas.html" class="active">Propuestas</a></li>
             <li><a href="imagenes.html">Imagenes</a></li>
@@ -46,14 +46,14 @@
 </main>
 
 <footer>
-    <p>&copy; 2025 Representación de Consejeros Universitarios ITI - FCC BUAP.</p>
+    <p>&copy; <span id="current-year">2025</span> Representación de Consejeros Universitarios ITI - FCC BUAP.</p>
 </footer>
 
 <script src="script.js"></script>
 <script>
 // ============================
-// Lógica de propuestas y comentarios
-// ============================
+// Lógica de propuestas y comentarios (Usando LocalStorage)
+// ===================================
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("form-propuesta");
     const contenedor = document.getElementById("contenedor-propuestas");
@@ -82,11 +82,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!titulo) return alert("Por favor escribe un título para la propuesta.");
 
         const nuevaPropuesta = {
-            id: Date.now(), // ID único basado en el timestamp
+            id: Date.now(),
             titulo,
             descripcion,
             imagen: "",
-            comentarios: [] // Inicializar array de comentarios
+            comentarios: []
         };
 
         if (archivo) {
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function guardarYMostrar(propuesta) {
-        propuestas.unshift(propuesta); // unshift para que la nueva aparezca primero
+        propuestas.unshift(propuesta);
         savePropuestas(propuestas);
         mostrarPropuesta(propuesta);
     }
@@ -112,10 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- 2. Renderizado de Propuestas y Comentarios ---
     function mostrarPropuesta(propuesta) {
         const card = document.createElement("div");
-        card.className = "card propuesta-card";
+        card.className = "card propuesta-card"; 
         card.setAttribute('data-id', propuesta.id);
 
-        // Estructura de la tarjeta de propuesta, incluyendo la sección de comentarios
         card.innerHTML = `
             ${propuesta.imagen ? `<img src="${propuesta.imagen}" alt="Imagen de la propuesta" class="propuesta-img">` : ""}
             <h3>${propuesta.titulo}</h3>
@@ -124,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="comentarios-seccion">
                 <h4>Comentarios (${propuesta.comentarios.length})</h4>
                 <div class="lista-comentarios">
-                    </div>
+                </div>
                 
                 <form class="form-comentario">
                     <input type="text" placeholder="Añade un comentario..." required>
@@ -141,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
             listaComentarios.appendChild(p);
         });
 
-        // Agregar la card al contenedor (al inicio)
         contenedor.prepend(card);
         
         // --- 3. Lógica para Agregar Comentario ---
