@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuestas - FCC ITI BUAP</title>
+    <link rel="stylesheet" href="stilos.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <span>🏛️ Consejo Universitario FCC-ITI</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="informacion.html">Información Detallada</a></li>
+            <li><a href="consejeros.html">Consejeros</a></li>
+            <li><a href="propuestas.html" class="active">Propuestas</a></li>
+            <li><a href="imagenes.html">Imagenes</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="crear-propuesta">
+        <h2>Enviar una Propuesta</h2>
+        <form id="form-propuesta">
+            <label for="titulo">Título de la propuesta:</label>
+            <input type="text" id="titulo" required placeholder="Ej. Mejorar laboratorios, Crear tutorías...">
+
+            <label for="descripcion">Descripción detallada:</label>
+            <textarea id="descripcion" rows="5" placeholder="Explica tu propuesta, sus beneficios o impacto..."></textarea>
+
+            <label for="imagen">Agregar imagen (opcional):</label>
+            <input type="file" id="imagen" accept="image/*">
+
+            <button type="submit">Publicar Propuesta</button>
+        </form>
+    </section>
+
+    <section id="lista-propuestas">
+        <h2>Propuestas Enviadas</h2>
+        <div id="contenedor-propuestas" class="cards-container"></div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 Representación de Consejeros Universitarios ITI - FCC BUAP.</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// ============================
+// Lógica de propuestas y comentarios
+// ============================
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("form-propuesta");
+    const contenedor = document.getElementById("contenedor-propuestas");
+
+    // Función para obtener la lista de propuestas del localStorage
+    const getPropuestas = () => {
+        return JSON.parse(localStorage.getItem("propuestasFCCITI")) || [];
+    };
+    
+    // Función para guardar la lista completa de propuestas
+    const savePropuestas = (propuestas) => {
+        localStorage.setItem("propuestasFCCITI", JSON.stringify(propuestas));
+    };
+
+    // Cargar propuestas previas desde localStorage y mostrarlas
+    let propuestas = getPropuestas();
+    propuestas.forEach(p => mostrarPropuesta(p));
+
+    // --- 1. Lógica para Publicar Propuesta ---
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const titulo = document.getElementById("titulo").value.trim();
+        const descripcion = document.getElementById("descripcion").value.trim();
+        const archivo = document.getElementById("imagen").files[0];
+
+        if (!titulo) return alert("Por favor escribe un título para la propuesta.");
+
+        const nuevaPropuesta = {
+            id: Date.now(), // ID único basado en el timestamp
+            titulo,
+            descripcion,
+            imagen: "",
+            comentarios: [] // Inicializar array de comentarios
+        };
+
+        if (archivo) {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                nuevaPropuesta.imagen = ev.target.result;
+                guardarYMostrar(nuevaPropuesta);
+            };
+            reader.readAsDataURL(archivo);
+        } else {
+            guardarYMostrar(nuevaPropuesta);
+        }
+
+        form.reset();
+    });
+
+    function guardarYMostrar(propuesta) {
+        propuestas.unshift(propuesta); // unshift para que la nueva aparezca primero
+        savePropuestas(propuestas);
+        mostrarPropuesta(propuesta);
+    }
+
+    // --- 2. Renderizado de Propuestas y Comentarios ---
+    function mostrarPropuesta(propuesta) {
+        const card = document.createElement("div");
+        card.className = "card propuesta-card";
+        card.setAttribute('data-id', propuesta.id);
+
+        // Estructura de la tarjeta de propuesta, incluyendo la sección de comentarios
+        card.innerHTML = `
+            ${propuesta.imagen ? `<img src="${propuesta.imagen}" alt="Imagen de la propuesta" class="propuesta-img">` : ""}
+            <h3>${propuesta.titulo}</h3>
+            <p>${propuesta.descripcion}</p>
+            
+            <div class="comentarios-seccion">
+                <h4>Comentarios (${propuesta.comentarios.length})</h4>
+                <div class="lista-comentarios">
+                    </div>
+                
+                <form class="form-comentario">
+                    <input type="text" placeholder="Añade un comentario..." required>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        `;
+        
+        // Renderizar los comentarios existentes
+        const listaComentarios = card.querySelector('.lista-comentarios');
+        propuesta.comentarios.forEach(c => {
+            const p = document.createElement('p');
+            p.innerHTML = `<strong>Anónimo:</strong> ${c}`;
+            listaComentarios.appendChild(p);
+        });
+
+        // Agregar la card al contenedor (al inicio)
+        contenedor.prepend(card);
+        
+        // --- 3. Lógica para Agregar Comentario ---
+        const formComentario = card.querySelector('.form-comentario');
+        formComentario.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const inputComentario = formComentario.querySelector('input[type="text"]');
+            const textoComentario = inputComentario.value.trim();
+
+            if (!textoComentario) return;
+
+            // 1. Actualizar la interfaz de usuario
+            const p = document.createElement('p');
+            p.innerHTML = `<strong>Anónimo:</strong> ${textoComentario}`;
+            listaComentarios.appendChild(p);
+            
+            // 2. Actualizar el array en memoria y en localStorage
+            const propuestaIndex = propuestas.findIndex(p => p.id === propuesta.id);
+            if (propuestaIndex !== -1) {
+                propuestas[propuestaIndex].comentarios.push(textoComentario);
+                savePropuestas(propuestas);
+
+                // Actualizar el contador
+                card.querySelector('.comentarios-seccion h4').textContent = 
+                    `Comentarios (${propuestas[propuestaIndex].comentarios.length})`;
+            }
+
+            // 3. Limpiar el formulario
+            inputComentario.value = '';
+        });
+    }
+});
+</script>
+</body>
+</html>

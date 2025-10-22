@@ -378,3 +378,98 @@ h2 {
         font-size: 2rem;
     }
 }
+
+.anuncios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.anuncio-card {
+    background: var(--color-fondo);
+    border-radius: 15px;
+    box-shadow: var(--shadow-light), var(--shadow-dark); /* Neumorfismo */
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.anuncio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 8px 8px 16px #babecc, -8px -8px 16px #ffffff;
+}
+
+.anuncio-card img {
+    width: 100%;
+    height: 200px; /* Altura fija para uniformidad */
+    object-fit: cover;
+    border-bottom: 3px solid var(--color-secundario);
+}
+
+.anuncio-content {
+    padding: 20px;
+}
+
+.anuncio-content h3 {
+    color: var(--color-principal);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.anuncio-content .fecha {
+    font-size: 0.9em;
+    color: var(--color-terciario); /* Usar color de contraste para la fecha */
+    margin-bottom: 15px;
+}
+
+.enlace-detalle {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--color-principal);
+    font-weight: 600;
+}
+
+/* --- Galería de Eventos (Imágenes Pequeñas) --- */
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 100px;
+    margin-top: 30px;
+}
+
+.galeria-item {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-inset);
+    transition: box-shadow 0.3s;
+    
+    /* Agregamos una altura fija al contenedor para crear un marco uniforme */
+    height: 250px; /* **Altura de marco uniforme (AJUSTA ESTE VALOR)** */
+    display: flex; /* Permite centrar la imagen */
+    align-items: center;
+    justify-content: center;
+}
+
+.galeria-item:hover {
+    box-shadow: var(--shadow-light), var(--shadow-dark);
+}
+
+.galeria-item img {
+    /* Ocupa el 100% del ancho del contenedor */
+    width: 200%;
+    
+    /* Ocupa el 100% de la altura del contenedor */
+    height: 130%; 
+    
+    /* CLAVE: Muestra la imagen completa, manteniendo su proporción, sin recortar. 
+       Si la imagen no tiene la misma proporción que el contenedor, dejará barras blancas o transparentes. */
+    object-fit: contain; 
+    
+    display: block;
+    /* Necesitas que el fondo de la imagen sea el fondo de neumorfismo */
+    background-color: var(--color-fondo); 
+}
+
