@@ -27,7 +27,7 @@ body {
     --shadow-inset: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff; /* Sombra interna para inputs */
 }
 
-/* --- Loader Inicial --- */
+/* --- Loader Inicial (Si aplica) --- */
 #page-loader {
     position: fixed;
     top: 0;
@@ -55,17 +55,26 @@ body {
     100% { transform: rotate(360deg); }
 }
 
+/* --- Estilos para el Menú Lateral Deslizable (Off-Canvas) --- */
+#menu-toggle {
+    display: none; /* Oculta el checkbox de control */
+}
+
+#page-content {
+    min-height: 100vh;
+    transition: transform 0.3s ease; /* Suaviza el deslizamiento del contenido */
+}
+
 /* ======================================= */
-/* 2. HEADER Y NAVEGACIÓN (PROFESIONAL) */
+/* 2. HEADER Y NAVEGACIÓN (PROFESIONAL + SIDEBAR) */
 /* ======================================= */
 header {
-    background: var(--color-fondo); /* Fondo neumórfico claro */
+    background: var(--color-fondo);
     color: var(--color-principal);
-    padding: 1rem 5%; /* Padding más sutil */
+    padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Sombra sutil que sigue el estilo neumórfico */
     box-shadow: var(--shadow-light), var(--shadow-dark); 
     position: sticky;
     top: 0;
@@ -79,42 +88,108 @@ header {
     color: var(--color-principal);
 }
 
-/* Contenedor de la navegación */
-nav {
-    flex-grow: 0; 
+/* --- Ícono del Menú (Hamburguesa) --- */
+.menu-icon {
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    z-index: 110; 
+}
+.menu-icon .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-principal);
+    border-radius: 2px;
+    transition: all 0.3s linear;
 }
 
-nav ul {
+/* --- Navegación de Escritorio (Desktop Nav) --- */
+.desktop-nav ul {
     list-style: none;
     display: flex; /* Horizontal en escritorio */
     gap: 10px;
     transition: all 0.3s ease-in-out;
 }
 
-nav ul li a {
+.desktop-nav ul li a {
     color: var(--color-texto);
     text-decoration: none;
     padding: 0.6rem 1rem;
     font-weight: 500;
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
     border-radius: 8px;
-    
-    /* Efecto "outset" neumórfico para los links */
-    box-shadow: 2px 2px 4px #babecc, -2px -2px 4px #ffffff; 
+    box-shadow: 2px 2px 4px #babecc, -2px -2px 4px #ffffff; /* Efecto outset */
 }
 
-nav ul li a.active {
-    /* El elemento activo simula ser "presionado" */
+.desktop-nav ul li a.active {
     background-color: var(--color-principal);
     color: var(--color-fondo);
     font-weight: 600;
-    box-shadow: var(--shadow-inset);
+    box-shadow: var(--shadow-inset); /* Efecto inset (presionado) */
 }
 
-nav ul li a:hover:not(.active) {
+.desktop-nav ul li a:hover:not(.active) {
     color: var(--color-principal); 
     background-color: var(--color-fondo);
     box-shadow: 4px 4px 8px #babecc, -4px -4px 8px #ffffff;
+}
+
+/* --- Sidebar Menu (Menú Desplegable) --- */
+#sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: var(--color-principal); /* Azul BUAP */
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.4);
+    transform: translateX(-100%); /* Oculto inicialmente */
+    transition: transform 0.3s ease;
+    z-index: 99;
+    padding-top: 20px;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-nav ul li a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s;
+}
+
+.sidebar-nav ul li a:hover, .sidebar-nav ul li a.active {
+    background-color: var(--color-secundario);
+    color: var(--color-principal);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* --- Lógica de Apertura del Menú --- */
+#menu-toggle:checked ~ #sidebar-menu {
+    transform: translateX(0); /* Despliega el menú */
+}
+
+#menu-toggle:checked ~ #page-content {
+    transform: translateX(250px); /* Desliza el contenido */
 }
 
 /* ======================================= */
@@ -129,7 +204,7 @@ section {
     margin-bottom: 40px;
     background: var(--color-fondo);
     border-radius: 15px;
-    box-shadow: var(--shadow-light), var(--shadow-dark); /* Neumorfismo sutil */
+    box-shadow: var(--shadow-light), var(--shadow-dark);
     text-align: center;
 }
 
@@ -177,7 +252,6 @@ h2 {
 .hero a button {
     box-shadow: var(--shadow-dark), var(--shadow-light);
 }
-
 
 /* Info Items y Contenedores */
 .info-container {
@@ -389,7 +463,7 @@ h2 {
 
 .anuncio-card img {
     width: 100%;
-    height: 300px; /* Imagen de anuncio más grande */
+    height: 300px;
     object-fit: cover;
     border-bottom: 3px solid var(--color-secundario);
 }
@@ -433,7 +507,6 @@ h2 {
     box-shadow: var(--shadow-inset);
     transition: box-shadow 0.3s;
     
-    /* Altura fija del contenedor/marco */
     height: 250px; 
     display: flex; 
     align-items: center;
@@ -448,7 +521,6 @@ h2 {
 .galeria-item img {
     width: 100%;
     height: 100%; 
-    /* Muestra la imagen completa, sin recortar */
     object-fit: contain; 
     
     display: block;
@@ -590,6 +662,35 @@ h2 {
 /* ======================================= */
 /* 7. MEDIA QUERIES (RESPONSIVE) */
 /* ======================================= */
+
+/* --- Vista Móvil (Menú Deslizable Sidebar) --- */
+@media (max-width: 768px) {
+    /* Muestra el icono de hamburguesa y oculta la nav de escritorio */
+    .desktop-nav {
+        display: none;
+    }
+    .menu-icon {
+        display: flex;
+    }
+    header {
+        /* Fuerza la alineación del logo y el ícono en una sola línea */
+        flex-direction: row; 
+    }
+    
+    /* Ajusta el deslizamiento del contenido principal cuando el menú está abierto */
+    #menu-toggle:checked ~ #page-content {
+        transform: translateX(250px); 
+    }
+}
+
+/* --- Asegura que el sidebar esté oculto en el escritorio --- */
+@media (min-width: 769px) {
+    #sidebar-menu {
+        display: none;
+    }
+}
+
+/* --- Ajustes generales en pantallas pequeñas (768px y menos) --- */
 @media (max-width: 992px) {
     .info-container {
         flex-direction: column;
@@ -600,49 +701,6 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    /* AJUSTE SOLICITADO: NAVEGACIÓN PROFESIONAL Y COMPLETA EN MÓVILES */
-    header {
-        flex-direction: column;
-        padding: 1rem 5%;
-        box-shadow: var(--shadow-light), var(--shadow-dark); 
-    }
-    
-    .logo {
-        margin-bottom: 15px; 
-    }
-
-    nav {
-        width: 100%;
-    }
-
-    nav ul {
-        flex-direction: column; /* Apila los elementos verticalmente */
-        gap: 5px; 
-        width: 100%;
-        align-items: stretch; /* Se estira para ocupar el 100% del ancho */
-    }
-    
-    nav ul li {
-        width: 100%;
-        text-align: center; 
-    }
-
-    nav ul li a {
-        padding: 10px 0; /* Aumenta el área de clic */
-        font-size: 1rem;
-        width: 100%;
-        display: block;
-        background-color: var(--color-fondo); 
-        box-shadow: var(--shadow-light), var(--shadow-dark); /* Sombra "outset" para cada botón */
-    }
-    
-    nav ul li a.active {
-        color: var(--color-principal);
-        background-color: var(--color-secundario); /* Resaltado activo con color BUAP */
-        box-shadow: var(--shadow-inset);
-    }
-    /* FIN AJUSTE NAVEGACIÓN MÓVIL */
-    
     h2 {
         font-size: 1.8rem;
     }
