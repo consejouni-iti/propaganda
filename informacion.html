@@ -7,18 +7,38 @@
     <link rel="stylesheet" href="stilos.css">
 </head>
 <body>
+<input type="checkbox" id="menu-toggle">
+
+<aside id="sidebar-menu">
+    <label for="menu-toggle" class="close-btn">×</label>
+    <nav class="sidebar-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="informacion.html" class="active">Información</a></li>
+            <li><a href="consejeros.html">Consejeros</a></li>
+            <li><a href="imagenes.html">Imagenes</a></li>
+            </ul>
+    </nav>
+</aside>
+
+<div id="page-content">
     <header>
         <div class="logo">
             <span>🏛️ Consejo Universitario FCC-ITI</span>
         </div>
-        <nav>
+        <label for="menu-toggle" class="menu-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+        
+        <nav class="desktop-nav">
             <ul>
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="informacion.html" class="active">Información </a></li>
+                <li><a href="informacion.html" class="active">Información</a></li>
                 <li><a href="consejeros.html">Consejeros</a></li>
-              <li><a href="propuestas.html">Propuestas</a></li>
-              <li><a href="imagenes.html">Imagenes</a></li>
-            </ul>
+                <li><a href="imagenes.html">Imagenes</a></li>
+                 </ul>
         </nav>
     </header>
 
@@ -30,9 +50,9 @@
                     <h3>Misión y Visión</h3>
                     <p>Mision: Fortalecer la colaboración entre estudiantes, profesores y autoridades para impulsar proyectos innovadores que mejoren la vida universitaria y promuevan el desarrollo tecnológico en nuestra comunidad.</p>
                     <hr>
-<p>Vision: Crear puentes entre estudiantes, profesores y autoridades. Impulsar proyectos </h>
+                    <p>Vision: Crear puentes entre estudiantes, profesores y autoridades. Impulsar proyectos </h>
                     que beneficien a nuestra comunidad, desde mejoras de laboratorios hasta nuevas oportunidades de vinculacion </h> 
-                con la industria tecnologica.</p>
+                    con la industria tecnologica.</p>
                 </div>
                 <div class="info-item">
                     <h3>Pilares y Ejes de Trabajo (ITI)</h3>
@@ -41,10 +61,9 @@
                         <li>Formular, con apego al plan de desarrollo de la Universidad y al plan de desarrollo de la Unidad Académica.</li>
                         <li>Conocer los proyectos de organización interna, de cursos, grupos académicos y horarios elaborados por el Secretario Académico, así como la realización de programas y proyectos extracurriculares propuestos por las academias, y hacer las observaciones que estime pertinentes.</li>
                         <li>Estudiar, formular y actualizar los métodos, planes y programas académicos de su Unidad, fijando los objetivos, actividades, metas, criterios y procedimientos de evaluación de los mismos.</li>
-                    <li>Fomentar la más amplia participación y colaboración entre las diversas disciplinas, unidades académicas e instituciones.</li>
-                    <li>Fortalecer la cultura de la salud preventiva y promover las condiciones óptimas de seguridad social de los estudiantes.</li>
-                    <li>Determinar anualmente las necesidades del personal conforme a los requerimientos de planes de trabajo.</li>
-
+                        <li>Fomentar la más amplia participación y colaboración entre las diversas disciplinas, unidades académicas e instituciones.</li>
+                        <li>Fortalecer la cultura de la salud preventiva y promover las condiciones óptimas de seguridad social de los estudiantes.</li>
+                        <li>Determinar anualmente las necesidades del personal conforme a los requerimientos de planes de trabajo.</li>
                     </ul>
                 </div>
             </div>
@@ -65,5 +84,5 @@
     </footer>
 
     <script src="script.js"></script>
-</body>
+</div></body>
 </html>

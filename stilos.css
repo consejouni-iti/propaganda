@@ -22,9 +22,9 @@ body {
     --color-terciario: #e74c3c; /* Rojo de Contraste */
     --color-fondo: #ecf0f3; /* Fondo base de neumorfismo */
     --color-texto: #2c3e50;
-    --shadow-light: 5px 5px 10px #d1d9e6; /* Sombra sutil y clara */
-    --shadow-dark: -5px -5px 10px #ffffff; /* Sombra sutil y oscura */
-    --shadow-inset: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff; /* Sombra interna para inputs */
+    --shadow-light: 5px 5px 10px #d1d9e6;
+    --shadow-dark: -5px -5px 10px #ffffff;
+    --shadow-inset: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff;
 }
 
 /* --- Loader Inicial (Si aplica) --- */
@@ -57,25 +57,27 @@ body {
 
 /* --- Estilos para el Menú Lateral Deslizable (Off-Canvas) --- */
 #menu-toggle {
-    display: none; /* Oculta el checkbox de control */
+    display: none;
 }
 
 #page-content {
     min-height: 100vh;
-    transition: transform 0.3s ease; /* Suaviza el deslizamiento del contenido */
+    transition: transform 0.3s ease;
 }
 
 /* ======================================= */
-/* 2. HEADER Y NAVEGACIÓN (PROFESIONAL + SIDEBAR) */
+/* 2. HEADER Y NAVEGACIÓN (DISEÑO GLASS/MINIMALISTA) */
 /* ======================================= */
 header {
-    background: var(--color-fondo);
+    /* Fondo Glassmorphism: Semitransparente con desenfoque */
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(5px); 
     color: var(--color-principal);
-    padding: 1rem 5%;
+    padding: 0.8rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-light), var(--shadow-dark); 
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1); 
     position: sticky;
     top: 0;
     z-index: 100;
@@ -83,14 +85,14 @@ header {
 
 .logo span {
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.5px;
     color: var(--color-principal);
 }
 
 /* --- Ícono del Menú (Hamburguesa) --- */
 .menu-icon {
-    display: none; /* Oculto por defecto */
+    display: none; 
     flex-direction: column;
     justify-content: space-around;
     width: 30px;
@@ -101,40 +103,38 @@ header {
 .menu-icon .bar {
     width: 100%;
     height: 3px;
-    background-color: var(--color-principal);
+    background-color: var(--color-principal); /* Barras en azul BUAP */
     border-radius: 2px;
     transition: all 0.3s linear;
 }
 
-/* --- Navegación de Escritorio (Desktop Nav) --- */
+/* --- Navegación de Escritorio (Desktop Nav - MINIMALISTA Y CONTRASTADA) --- */
 .desktop-nav ul {
     list-style: none;
-    display: flex; /* Horizontal en escritorio */
-    gap: 10px;
+    display: flex; 
+    gap: 25px;
     transition: all 0.3s ease-in-out;
 }
 
 .desktop-nav ul li a {
     color: var(--color-texto);
     text-decoration: none;
-    padding: 0.6rem 1rem;
-    font-weight: 500;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-    border-radius: 8px;
-    box-shadow: 2px 2px 4px #babecc, -2px -2px 4px #ffffff; /* Efecto outset */
-}
-
-.desktop-nav ul li a.active {
-    background-color: var(--color-principal);
-    color: var(--color-fondo);
+    padding: 0.5rem 0.2rem;
     font-weight: 600;
-    box-shadow: var(--shadow-inset); /* Efecto inset (presionado) */
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 3px solid transparent; 
 }
 
+/* Estado Activo: Barra Oro y texto Principal */
+.desktop-nav ul li a.active {
+    color: var(--color-principal); 
+    border-bottom: 3px solid var(--color-secundario); /* Línea gruesa de color BUAP Oro */
+}
+
+/* Hover: Animación de línea sutil */
 .desktop-nav ul li a:hover:not(.active) {
     color: var(--color-principal); 
-    background-color: var(--color-fondo);
-    box-shadow: 4px 4px 8px #babecc, -4px -4px 8px #ffffff;
+    border-bottom: 3px solid var(--color-principal); /* Línea azul al pasar el ratón */
 }
 
 /* --- Sidebar Menu (Menú Desplegable) --- */
@@ -144,9 +144,9 @@ header {
     left: 0;
     width: 250px;
     height: 100%;
-    background-color: var(--color-principal); /* Azul BUAP */
+    background-color: var(--color-principal); /* Azul BUAP sólido (High-Contrast) */
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.4);
-    transform: translateX(-100%); /* Oculto inicialmente */
+    transform: translateX(-100%); 
     transition: transform 0.3s ease;
     z-index: 99;
     padding-top: 20px;
@@ -169,7 +169,7 @@ header {
 }
 
 .sidebar-nav ul li a:hover, .sidebar-nav ul li a.active {
-    background-color: var(--color-secundario);
+    background-color: var(--color-secundario); /* Resaltado Oro */
     color: var(--color-principal);
 }
 
@@ -185,11 +185,11 @@ header {
 
 /* --- Lógica de Apertura del Menú --- */
 #menu-toggle:checked ~ #sidebar-menu {
-    transform: translateX(0); /* Despliega el menú */
+    transform: translateX(0);
 }
 
 #menu-toggle:checked ~ #page-content {
-    transform: translateX(250px); /* Desliza el contenido */
+    transform: translateX(250px);
 }
 
 /* ======================================= */
@@ -439,7 +439,7 @@ h2 {
 /* 6. ESTILOS PARA ANUNCIOS Y GALERÍA */
 /* ======================================= */
 
-/* --- Grid de Anuncios Principales --- */
+/* --- Grid de Anuncios Principales */
 .anuncios-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -665,12 +665,12 @@ h2 {
 
 /* --- Vista Móvil (Menú Deslizable Sidebar) --- */
 @media (max-width: 768px) {
-    /* Muestra el icono de hamburguesa y oculta la nav de escritorio */
+    /* Oculta el menú de escritorio y muestra el icono de hamburguesa */
     .desktop-nav {
         display: none;
     }
     .menu-icon {
-        display: flex;
+        display: flex; /* Muestra el botón de hamburguesa */
     }
     header {
         /* Fuerza la alineación del logo y el ícono en una sola línea */

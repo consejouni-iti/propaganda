@@ -7,16 +7,36 @@
     <link rel="stylesheet" href="stilos.css">
 </head>
 <body>
+<input type="checkbox" id="menu-toggle">
+
+<aside id="sidebar-menu">
+    <label for="menu-toggle" class="close-btn">×</label>
+    <nav class="sidebar-nav">
+        <ul>
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="informacion.html">Información</a></li>
+            <li><a href="consejeros.html">Consejeros</a></li>
+            <li><a href="imagenes.html">Imagenes</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<div id="page-content">
     <header>
         <div class="logo">
             <span>🏛️ Consejo Universitario FCC-ITI</span>
         </div>
-        <nav>
+        <label for="menu-toggle" class="menu-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+        
+        <nav class="desktop-nav">
             <ul>
                 <li><a href="index.html" class="active">Inicio</a></li>
-                <li><a href="informacion.html">Información </a></li>
+                <li><a href="informacion.html">Información</a></li>
                 <li><a href="consejeros.html">Consejeros</a></li>
-                <li><a href="propuestas.html">Propuestas</a></li>
                 <li><a href="imagenes.html">Imagenes</a></li>
             </ul>
         </nav>
@@ -31,8 +51,6 @@
             </a>
         </section>
 
-      
-
         <section id="enlaces-rapidos">
             <h2>Accesos Rápidos</h2>
             <div class="cards-container">
@@ -42,14 +60,14 @@
                 </a>
             </div>
         </section>
-         
+          
         <section id="resumen-mision">
             <h2>Nuestra Misión Principal</h2>
             <div class="info-item">
                 <p>Ser el canal transparente y eficaz entre la comunidad estudiantil de ITI y las instancias directivas de la BUAP. Buscamos llevar la voz de los alumnos para incidir positivamente en la calidad académica y la vida universitaria. Navega por las secciones para conocer a fondo nuestro trabajo.</p>
             </div>
         </section>
-         
+          
     </main>
 
     <footer>
@@ -57,5 +75,5 @@
     </footer>
 
     <script src="script.js"></script>
-</body>
+</div></body>
 </html>

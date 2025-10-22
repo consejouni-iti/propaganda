@@ -7,17 +7,37 @@
     <link rel="stylesheet" href="stilos.css">
 </head>
 <body>
+<input type="checkbox" id="menu-toggle">
+
+<aside id="sidebar-menu">
+    <label for="menu-toggle" class="close-btn">×</label>
+    <nav class="sidebar-nav">
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="informacion.html">Información</a></li>
+            <li><a href="consejeros.html">Consejeros</a></li>
+            <li><a href="imagenes.html" class="active">Imagenes</a></li>
+        </ul>
+    </nav>
+</aside>
+
+<div id="page-content">
     <header>
         <div class="logo">
             <span>🏛️ Consejo Universitario FCC-ITI</span>
         </div>
-        <nav>
+        <label for="menu-toggle" class="menu-icon">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+        
+        <nav class="desktop-nav">
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="informacion.html">Información</a></li>
                 <li><a href="consejeros.html">Consejeros</a></li>
-                <li><a href="propuestas.html">Propuestas</a></li>
-                <li><a href="imagenes.html" class="activate">Imagenes</a></li>
+                <li><a href="imagenes.html" class="active">Imagenes</a></li>
             </ul>
         </nav>
     </header>
@@ -35,10 +55,7 @@
                         <a href="#" class="enlace-detalle">Ver Detalles →</a>
                     </div>
                 </div>
-
-               
-
-                </div>
+            </div>
         </section>
 
         <section id="galeria-eventos">
@@ -46,19 +63,17 @@
             <div id="contenedor-galeria" class="galeria-grid">
                 <div class="galeria-item">
                     <img src="p1.jpg" alt="Reunión con Dirección">
-                
                 </div>
-                 <div class="galeria-item">
+                <div class="galeria-item">
                     <img src="p2.jpg" alt="Jornada de Reforestación">
-                  
                 </div>
-                 <div class="galeria-item">
+                <div class="galeria-item">
                     <img src="p3.jpg" alt="Mesa de Diálogo ITI">
-                   
                 </div>
                 <div class="galeria-item">
                     <img src="p4.jpg" alt="Mesa de Diálogo ITI">
                 </div>
+            </div>
         </section>
     </main>
 
@@ -67,5 +82,5 @@
     </footer>
 
     <script src="script.js"></script>
-</body>
+</div></body>
 </html>
